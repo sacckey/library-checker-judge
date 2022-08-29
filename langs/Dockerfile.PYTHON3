@@ -4,7 +4,7 @@ RUN cargo build --release
 
 FROM python:3.10-slim
 
-RUN pip install --upgrade numpy scipy
+RUN pip install --upgrade numpy scipy mahjong
 
 COPY --from=init-builder /home/rust/src/target/x86_64-unknown-linux-musl/release/library-checker-init /usr/bin
 
