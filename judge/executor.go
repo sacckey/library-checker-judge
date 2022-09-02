@@ -28,7 +28,7 @@ func main() {
 	// 標準出力を受け取る
 	r, w, _ := os.Pipe()
 
-	task, _ := NewTaskInfo("library-checker-images-python3", WithArguments("python3", "program.py"), WithStackLimitMB(-1), WithMemoryLimitMB(512), WithPidsLimit(100), WithWorkDir("/workdir"), WithVolume(&volume, "/workdir"), WithTimeout(2*time.Second), WithStdin(reader), WithStdout(w), WithStderr(w))
+	task, _ := NewTaskInfo("library-checker-images-python3", WithArguments("python3", "program.py"), WithStackLimitMB(-1), WithMemoryLimitMB(512), WithPidsLimit(100), WithWorkDir("/workdir"), WithVolume(&volume, "/workdir"), WithTimeout(2*time.Second), WithStdin(reader), WithStdout(w))
 
 	ci := containerInfo{containerID: container_id}
 	res, _ := task.start(ci)
@@ -44,6 +44,7 @@ func main() {
 		"Time": res.Time,
 		"Memory": res.Memory,
 		"TLE": res.TLE,
+		"IA": false,
 	}
 
 	jsonStr, _ := json.Marshal(result)
